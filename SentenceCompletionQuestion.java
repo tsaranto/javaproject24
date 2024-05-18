@@ -1,11 +1,22 @@
-public class SentenceCompletionQuestion extends Question{
-    list<String> answerlist;
-    list<String> ordered;
+import java.util.List;
 
-    public SentenceCompletionQuestion(int code, String description, String answerlist, String ordered){
+public class SentenceCompletionQuestion extends Question{
+    List<String> answerlist;
+    List<String> ordered;
+
+    public SentenceCompletionQuestion(int code, String description, List<String> answerlist, List<String> ordered) {
         super(code, description);
         this.answerlist = answerlist;
         this.ordered = ordered;
+    }
+
+    @Override
+    boolean checkAnswer(Answer answer) {
+        if (answer instanceof SentenceCompletionAnswer) {
+            SentenceCompletionAnswer sca = (SentenceCompletionAnswer) answer;
+            return ordered.equals(sca.wordOrder);
+        }
+        return false;
     }
 
     @Override
