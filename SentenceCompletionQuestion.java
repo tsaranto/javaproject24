@@ -13,7 +13,7 @@ public class SentenceCompletionQuestion extends Question{
         return "SentenceCompletionQuestion{" +
                 "code=" + code +
                 ", description='" + description + '\'' +
-                ", answerList=" + answerList +
+                ", answerList=" + answerlist +
                 ", ordered=" + ordered +
                 '}';
     }
