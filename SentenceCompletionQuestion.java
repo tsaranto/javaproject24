@@ -7,13 +7,13 @@ public class SentenceCompletionQuestion extends Question{
         this.answerlist = answerlist;
         this.ordered = ordered;
     }
-    
+
     @Override
     public String toString() {
         return "SentenceCompletionQuestion{" +
                 "code=" + code +
                 ", description='" + description + '\'' +
-                ", answerList=" + answerList +
+                ", answerList=" + answerlist +
                 ", ordered=" + ordered +
                 '}';
     }
