@@ -1,4 +1,4 @@
 public class SentenceCompletionQuestion extends Question{
-    String answerlist;
+    String listofanswers;
     String ordered;
 }
