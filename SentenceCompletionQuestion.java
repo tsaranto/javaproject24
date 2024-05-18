@@ -1,4 +1,21 @@
 public class SentenceCompletionQuestion extends Question{
-    String listofanswers;
-    String ordered;
+    list<String> answerlist;
+    list<String> ordered;
+
+    public SentenceCompletionQuestion(int code, String description, String answerlist, String ordered){
+        super(code, description);
+        this.answerlist = answerlist;
+        this.ordered = ordered;
+    }
+    
+    @Override
+    public String toString() {
+        return "SentenceCompletionQuestion{" +
+                "code=" + code +
+                ", description='" + description + '\'' +
+                ", answerList=" + answerList +
+                ", ordered=" + ordered +
+                '}';
+    }
 }
+
