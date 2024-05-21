@@ -11,12 +11,20 @@ public class SentenceCompletionQuestion extends Question{
     }
 
     @Override
-    boolean checkAnswer(Answer answer) {
+    public boolean checkAnswer(Answer answer) {
         if (answer instanceof SentenceCompletionAnswer) {
             SentenceCompletionAnswer sca = (SentenceCompletionAnswer) answer;
             return ordered.equals(sca.wordOrder);
         }
         return false;
+    }
+
+    public List<String> getOrdered() {
+        return ordered;
+    }
+
+    public List<String> getAnswerList() {
+        return answerlist;
     }
 
     @Override
