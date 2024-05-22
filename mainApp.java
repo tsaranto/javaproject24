@@ -9,6 +9,7 @@ public class mainApp {
         Scanner scanner = new Scanner(System.in);
         int choice, choice2, questioncode;
         String description;
+        int elena;
 
         do {
             System.out.println("1. Insert evaluatee");
