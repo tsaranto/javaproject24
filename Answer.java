@@ -8,4 +8,6 @@ public abstract class Answer {
     }
     public abstract boolean isCorrect(Question question);
 
+    public abstract String getResponse();
+
 }

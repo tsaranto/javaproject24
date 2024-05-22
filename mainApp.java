@@ -5,11 +5,11 @@ import java.util.Scanner;
 
 public class mainApp {
     private static List<Evaluated> evaluatedList = new ArrayList<>();
+    private static List<Question> questions = new ArrayList<>();
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int choice, choice2, questioncode;
         String description;
-        int elena;
 
         do {
             System.out.println("1. Insert evaluatee");
@@ -30,7 +30,7 @@ public class mainApp {
                     addEvaluated(scanner);
                     break;
                 case 2:
-                    addQuestion();
+                    addQuestion(scanner);
 
                     break;
                 case 3:
@@ -85,10 +85,23 @@ public class mainApp {
         System.out.println("Set code:");
         int questioncode = scanner.nextInt();
         scanner.nextLine();
+        if(choice==3){
+            System.out.println("Mark missing words with '?'");
+        }
         System.out.println("Set description:");
         String description = scanner.nextLine();
         switch(choice){
-            case 1:
+            //case 1: 
+            case 2:
+                System.out.println("Enter correct word:");
+                String correctWord = scanner.nextLine();
+                questions.add(new WordAnswerQuestion(questioncode, description, correctWord));
+                System.out.println(questions);
+                break;
+            //case 3:
+
             
 
         }
+    }
+}    
