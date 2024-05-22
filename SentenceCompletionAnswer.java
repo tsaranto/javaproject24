@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SentenceCompletionAnswer extends Answer {
     List<String> wordOrder;
@@ -15,5 +16,10 @@ public class SentenceCompletionAnswer extends Answer {
             return scQuestion.getOrdered().equals(wordOrder);
         }
         return false;
+    }
+
+    @Override
+    public String getResponse() {
+        return wordOrder.stream().collect(Collectors.joining(","));
     }
 }
