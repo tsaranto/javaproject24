@@ -10,8 +10,7 @@ public class mainApp {
     private static List<Answer> answers = new ArrayList<>();
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int choice, choice2, questioncode;
-        String description;
+        int choice;
 
         do {
             System.out.println("1. Insert evaluatee");
@@ -19,7 +18,7 @@ public class mainApp {
             System.out.println("3. Insert answer");
             System.out.println("4. Show questions");
             System.out.println("5. Show evaluatee Answers");
-            System.out.println("6. Show number of correct answers");
+            System.out.println("6. Show number of correct answers per evaluatee");
             System.out.println("7. Question accuracy percentage");
             System.out.println("8. Evaluatee accuracy percentage");
             System.out.println("9. Exit");
@@ -39,10 +38,10 @@ public class mainApp {
                     addAnswer(scanner);
                     break;
                 case 4:
-                    //displayQuestions
+                    displayQuestions();
                     break;
                 case 5:
-                    //displayEvaluatorAnswers
+                    displayEvaluatorAnswers();
                     break;
                 case 6:
                     //displayCorrectAnswersCount
@@ -144,8 +143,19 @@ public class mainApp {
                 System.out.println("Invalid choice!");
 
         }
-
-
-
     }
+
+    private static void displayQuestions(){
+        for (Question question: questions){
+            System.out.println(question);
+        }
+    }
+
+    private static void displayEvaluatorAnswers(){
+        for (Answer answer: answers){
+            System.out.println(answer);
+        }
+    }
+
+
 }    

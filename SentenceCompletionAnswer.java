@@ -22,4 +22,11 @@ public class SentenceCompletionAnswer extends Answer {
     public String getResponse() {
         return wordOrder.stream().collect(Collectors.joining(","));
     }
+
+    @Override
+    public String toString() {
+        return "evaluatee: " + evaluated_code + ", question: " + question_code
+        + ", type: SentenceCompletionQuestion"+
+                ", answer:'" + wordOrder;
+    }
 }

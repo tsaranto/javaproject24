@@ -1,11 +1,11 @@
 public class WordAnswer extends Answer{
     private String response;
 
-    public WordAnswer(int evaluatedCode, int questionCode, String response) {
-        super(evaluatedCode, questionCode);
+    public WordAnswer(int evaluated_code, int question_code, String response) {
+        super(evaluated_code, question_code);
         this.response = response;
     }
-
+    @Override
     public String getResponse() {
         return response;
     }
@@ -21,5 +21,12 @@ public class WordAnswer extends Answer{
             return wordQuestion.checkAnswer(this);
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return "evaluatee: " + evaluated_code + ", question: " + question_code
+        + ", type: WordAnswerQuestion"+
+                ", answer:'" + response;
     }
 }
