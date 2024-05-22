@@ -1,10 +1,13 @@
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 public class mainApp {
     private static List<Evaluated> evaluatedList = new ArrayList<>();
+    private static List<Question> questions = new ArrayList<>();
+    private static List<Answer> answers = new ArrayList<>();
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int choice, choice2, questioncode;
@@ -29,11 +32,11 @@ public class mainApp {
                     addEvaluated(scanner);
                     break;
                 case 2:
-                    addQuestion();
+                    addQuestion(scanner);
 
                     break;
                 case 3:
-                    //addAnswer
+                    addAnswer(scanner);
                     break;
                 case 4:
                     //displayQuestions
@@ -73,6 +76,8 @@ public class mainApp {
 
     }
 
+
+
     private static void addQuestion(Scanner scanner){
         System.out.println("Select type of question:");
         System.out.println("1. Multiple choice question");
@@ -84,10 +89,63 @@ public class mainApp {
         System.out.println("Set code:");
         int questioncode = scanner.nextInt();
         scanner.nextLine();
+        if(choice==3){
+            System.out.println("Mark missing words with '?'");
+        }
         System.out.println("Set description:");
         String description = scanner.nextLine();
         switch(choice){
-            case 1:
-            
+            //case 1: 
+            case 2:
+                System.out.println("Enter correct word:");
+                String correctWord = scanner.nextLine();
+                questions.add(new WordAnswerQuestion(questioncode, description, correctWord));
+                break;
+            case 3:
+                System.out.println("Enter provided words (comma-separated):");
+                List<String> providedWords = Arrays.asList(scanner.nextLine().split(","));
+                System.out.println("Enter the correct order of words (comma-separated):");
+                List<String> correctOrder = Arrays.asList(scanner.nextLine().split(","));
+                questions.add(new SentenceCompletionQuestion(questioncode, description, providedWords, correctOrder));
+                break;
+            default: 
+                System.out.println("Invalid choice!");
+        }
+    }
+
+
+    private static void addAnswer(Scanner scanner){
+        System.out.println("Select type of answer:");
+        System.out.println("1. Multiple choice answer");
+        System.out.println("2. Single word answer");
+        System.out.println("3. Sentence completion answer");
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.println("Insert evaluatee code:");
+        int evaluateecode = scanner.nextInt();
+        System.out.println("Insert question code:");
+        int questioncode = scanner.nextInt();
+        scanner.nextLine();
+        switch(choice){
+            /*case 1:
+                System.out.println("Insert chosen answers seperated by commas(,):");
+                List<String> chosenanswers = Arrays.asList(scanner.nextLine().split(","));
+                answers.add(new MultipleChoiceAnswer());*/
+            case 2:
+                System.out.println("Insert chosen word:");
+                String word = scanner.nextLine();
+                answers.add(new WordAnswer(evaluateecode, questioncode, word));
+            case 3:
+                System.out.println("Insert ordered words(comma-separated):");
+                List<String> orderedanswers = Arrays.asList(scanner.nextLine().split(","));
+                answers.add(new SentenceCompletionAnswer(evaluateecode, questioncode, orderedanswers));
+            default:
+                System.out.println("Invalid choice!");
 
         }
+
+
+
+    }
+}    
