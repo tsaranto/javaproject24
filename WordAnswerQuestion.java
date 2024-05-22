@@ -14,10 +14,8 @@ public class WordAnswerQuestion extends Question{
 
     @Override
     public String toString() {
-        return "WordAnswerQuestion{" +
-                "code=" + code +
-                ", description='" + description + '\'' +
-                ", correctAnswer='" + correctanswer + '\'' +
-                '}';
+        return "(" + code + ") type: WordAnswerQuestion"+
+                ", description:'" + description + '\'' +
+                ", correctAnswer:'" + correctanswer + '\'';
     }
 }

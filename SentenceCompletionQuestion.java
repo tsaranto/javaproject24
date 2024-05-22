@@ -29,12 +29,10 @@ public class SentenceCompletionQuestion extends Question{
 
     @Override
     public String toString() {
-        return "SentenceCompletionQuestion{" +
-                "code=" + code +
-                ", description='" + description + '\'' +
-                ", answerList=" + answerlist +
-                ", ordered=" + ordered +
-                '}';
+        return "(" + code + ") type: SentenceCompletionQuestion"+
+                ", description:'" + description + '\'' +
+                ", answerList:" + answerlist +
+                ", ordered:" + ordered ;
     }
 }
 
