@@ -94,7 +94,13 @@ public class mainApp {
         System.out.println("Set description:");
         String description = scanner.nextLine();
         switch(choice){
-            //case 1: 
+            case 1:
+                System.out.println("Enter total choices (comma-separated):");
+                List<String> totalChoices = Arrays.asList(scanner.nextLine().split(","));
+                System.out.println("Enter the correct choices (comma-separated):");
+                List<String> correctChoices = Arrays.asList(scanner.nextLine().split(","));
+                questions.add(new MultipleChoiceQuestion(totalChoices, correctChoices, questioncode, description));
+                break; 
             case 2:
                 System.out.println("Enter correct word:");
                 String correctWord = scanner.nextLine();
@@ -127,18 +133,21 @@ public class mainApp {
         int questioncode = scanner.nextInt();
         scanner.nextLine();
         switch(choice){
-            /*case 1:
+            case 1:
                 System.out.println("Insert chosen answers seperated by commas(,):");
                 List<String> chosenanswers = Arrays.asList(scanner.nextLine().split(","));
-                answers.add(new MultipleChoiceAnswer());*/
+                answers.add(new MultipleChoiceAnswer(evaluateecode, questioncode, chosenanswers));
+                break;
             case 2:
                 System.out.println("Insert chosen word:");
                 String word = scanner.nextLine();
                 answers.add(new WordAnswer(evaluateecode, questioncode, word));
+                break;
             case 3:
                 System.out.println("Insert ordered words(comma-separated):");
                 List<String> orderedanswers = Arrays.asList(scanner.nextLine().split(","));
                 answers.add(new SentenceCompletionAnswer(evaluateecode, questioncode, orderedanswers));
+                break;
             default:
                 System.out.println("Invalid choice!");
 

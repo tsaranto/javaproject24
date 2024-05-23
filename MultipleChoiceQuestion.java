@@ -1,5 +1,5 @@
 import java.util.List;
-import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MultipleChoiceQuestion extends Question{
     List<String> answerlist;
@@ -14,20 +14,30 @@ public class MultipleChoiceQuestion extends Question{
     }
     //APO DO KAI PERA EINAI CHAT TZIPITOULIS, TO GIVENANSERS EINAI THEORITIKA APO TIN KLASI ANSER
     @Override
-    public boolean checkAnswer(List<String> givenAnswers) {
+    public boolean checkAnswer(Answer answer) {
         // Check if the size of givenAnswers and correctAnswer match
-        if (givenAnswers.size() != correctanswer.size()) {
-            return false;
-        }
 
-        // Check if all given answers are correct
-        for (String answer : givenAnswers) {
-            if (!correctanswer.contains(answer)) {
+        if (answer instanceof MultipleChoiceAnswer) {
+            MultipleChoiceAnswer mcAnswer = (MultipleChoiceAnswer) answer;
+            List<String> givenAnswers = Arrays.asList(mcAnswer.getResponse().split(","));
+        
+
+            if (givenAnswers.size() != correctanswer.size()) {
                 return false;
             }
+
+            // Check if all given answers are correct
+            for (String givenAnswer : givenAnswers) {
+                if (!correctanswer.contains(givenAnswer)) {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         return true;
+
     }
 
     public void display() {
