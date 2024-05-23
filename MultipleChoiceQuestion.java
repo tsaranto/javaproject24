@@ -40,10 +40,12 @@ public class MultipleChoiceQuestion extends Question{
 
     }
 
-    public void display() {
-        System.out.println("Question: " + super.description);
-        for (int i = 0; i < answerlist.size(); i++) {
-            System.out.println((i + 1) + ": " + answerlist.get(i));
-        }
+    @Override
+    public String toString() {
+        return "(" + code + ") type: MultipleChoiceQuestion" +
+                ", description: '" + description + '\'' +
+                ", choices: " + answerlist +
+                ", correctChoices: " + correctanswer;
     }
+
 }

@@ -32,7 +32,6 @@ public class mainApp {
                     break;
                 case 2:
                     addQuestion(scanner);
-
                     break;
                 case 3:
                     addAnswer(scanner);
@@ -132,26 +131,45 @@ public class mainApp {
         System.out.println("Insert question code:");
         int questioncode = scanner.nextInt();
         scanner.nextLine();
-        switch(choice){
-            case 1:
-                System.out.println("Insert chosen answers seperated by commas(,):");
-                List<String> chosenanswers = Arrays.asList(scanner.nextLine().split(","));
-                answers.add(new MultipleChoiceAnswer(evaluateecode, questioncode, chosenanswers));
-                break;
-            case 2:
-                System.out.println("Insert chosen word:");
-                String word = scanner.nextLine();
-                answers.add(new WordAnswer(evaluateecode, questioncode, word));
-                break;
-            case 3:
-                System.out.println("Insert ordered words(comma-separated):");
-                List<String> orderedanswers = Arrays.asList(scanner.nextLine().split(","));
-                answers.add(new SentenceCompletionAnswer(evaluateecode, questioncode, orderedanswers));
-                break;
-            default:
-                System.out.println("Invalid choice!");
 
+        Evaluated evaluatee = null;
+        for (Evaluated e : evaluatedList) {
+            if (e.getCode() == evaluateecode) {
+                evaluatee = e;
+                break;
+            }
         }
+    
+        Question question = null;
+        for (Question q : questions) {
+            if (q.getCode() == questioncode) {
+                question = q;
+                break;
+            }
+        }
+
+        if(evaluatee != null && question != null) {
+            switch(choice){
+                case 1:
+                    System.out.println("Insert chosen answers seperated by commas(,):");
+                    List<String> chosenanswers = Arrays.asList(scanner.nextLine().split(","));
+                    answers.add(new MultipleChoiceAnswer(evaluateecode, questioncode, chosenanswers));
+                    break;
+                case 2:
+                    System.out.println("Insert chosen word:");
+                    String word = scanner.nextLine();
+                    answers.add(new WordAnswer(evaluateecode, questioncode, word));
+                    break;
+                case 3:
+                    System.out.println("Insert ordered words(comma-separated):");
+                    List<String> orderedanswers = Arrays.asList(scanner.nextLine().split(","));
+                    answers.add(new SentenceCompletionAnswer(evaluateecode, questioncode, orderedanswers));
+                    break;
+                default:
+                    System.out.println("Invalid choice!");
+
+            }
+        }    
     }
 
     private static void displayQuestions(){
@@ -161,12 +179,12 @@ public class mainApp {
     }
 
     private static void displayEvaluatorAnswers(Scanner scanner){
-        System.out.println("List of evaluated entities:");
+        System.out.println("List of evaluatees:");
         for (Evaluated evaluated : evaluatedList) {
             System.out.println(evaluated.getCode() + ". " + evaluated.getName() + " " + evaluated.getSurname());
         }
         
-        System.out.print("Select an evaluated entity: ");
+        System.out.print("Select an evaluatee: ");
         int selectedEvaluatedCode = scanner.nextInt();
         scanner.nextLine(); 
         
@@ -186,7 +204,7 @@ public class mainApp {
                 }
             }
         } else {
-            System.out.println("Invalid evaluated entity code!");
+            System.out.println("Invalid evaluateecode!");
         }
     }
 
