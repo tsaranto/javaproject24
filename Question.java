@@ -23,7 +23,7 @@ public abstract class Question {
         this.description = description;
     }
 
-    public abstract boolean checkAnswer(String answer);
+    public abstract boolean checkAnswer(Answer answer);
 
     @Override
     public String toString() {
