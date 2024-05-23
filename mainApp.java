@@ -41,7 +41,7 @@ public class mainApp {
                     displayQuestions();
                     break;
                 case 5:
-                    displayEvaluatorAnswers();
+                    displayEvaluatorAnswers(scanner);
                     break;
                 case 6:
                     //displayCorrectAnswersCount
@@ -160,9 +160,33 @@ public class mainApp {
         }
     }
 
-    private static void displayEvaluatorAnswers(){
-        for (Answer answer: answers){
-            System.out.println(answer);
+    private static void displayEvaluatorAnswers(Scanner scanner){
+        System.out.println("List of evaluated entities:");
+        for (Evaluated evaluated : evaluatedList) {
+            System.out.println(evaluated.getCode() + ". " + evaluated.getName() + " " + evaluated.getSurname());
+        }
+        
+        System.out.print("Select an evaluated entity: ");
+        int selectedEvaluatedCode = scanner.nextInt();
+        scanner.nextLine(); 
+        
+        Evaluated selectedEvaluated = null;
+        for (Evaluated evaluated : evaluatedList) {
+            if (evaluated.getCode() == selectedEvaluatedCode) {
+                selectedEvaluated = evaluated;
+                break;
+            }
+        }
+        
+        if (selectedEvaluated != null) {
+            System.out.println("Answers of " + selectedEvaluated.getName() + " " + selectedEvaluated.getSurname() + ":");
+            for (Answer answer : answers) {
+                if (answer.getEvaluatedCode() == selectedEvaluatedCode) {
+                    System.out.println(answer);
+                }
+            }
+        } else {
+            System.out.println("Invalid evaluated entity code!");
         }
     }
 

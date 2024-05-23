@@ -11,7 +11,7 @@ public abstract class Answer {
     public abstract String getResponse();
 
 
-    public int getEvaluated_code(){
+    public int getEvaluatedCode(){
         return evaluated_code;
     }
 
