@@ -204,7 +204,7 @@ public class mainApp {
                 }
             }
         } else {
-            System.out.println("Invalid evaluateecode!");
+            System.out.println("Invalid evaluatee code!");
         }
     }
 
