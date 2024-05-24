@@ -15,4 +15,9 @@ public abstract class Answer {
         return evaluated_code;
     }
 
+    public int getQuestionCode() {
+        return question_code;
+        
+    }
+
 }
