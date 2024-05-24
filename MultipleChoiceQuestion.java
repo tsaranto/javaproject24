@@ -14,7 +14,8 @@ public class MultipleChoiceQuestion extends Question{
     }
     //APO DO KAI PERA EINAI CHAT TZIPITOULIS, TO GIVENANSERS EINAI THEORITIKA APO TIN KLASI ANSER
     @Override
-    public boolean checkAnswer(List<String> givenAnswers) {
+    public boolean checkAnswer(MultipleChoiceAnswer answer) {
+        List<String> givenAnswers = answer.getChosenAnswers();
         // Check if the size of givenAnswers and correctAnswer match
         if (givenAnswers.size() != correctanswer.size()) {
             return false;
@@ -35,5 +36,18 @@ public class MultipleChoiceQuestion extends Question{
         for (int i = 0; i < answerlist.size(); i++) {
             System.out.println((i + 1) + ": " + answerlist.get(i));
         }
+    }
+
+    public List<String> getAnswerList() {
+        return answerList;
+    }
+
+    public List<String> getCorrectAnswer() {
+        return correctAnswer;
+    }
+
+    @Override
+    public String toString() {
+        return "MultipleChoiceQuestion{code=" + getCode() + ", description='" + getDescription() + "', answerList=" + answerList + ", correctAnswer=" + correctAnswer + '}';
     }
 }

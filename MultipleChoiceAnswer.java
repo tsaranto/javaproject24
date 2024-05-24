@@ -10,8 +10,8 @@ public class MultipleChoiceAnswer extends Answer{
     }
 
     public boolean isCorrect(Question question) {
-        if (question instanceof MultipleChoiceAnswer) {
-            MultipleChoiceAnswer mcQuestion = (MultipleChoiceAnswer) question;
+        if (question instanceof MultipleChoiceQuestion) {
+            MultipleChoiceQuestion mcQuestion = (MultipleChoiceQuestion) question;
             return mcQuestion.checkAnswer(this);
         }
         return false;
@@ -27,5 +27,9 @@ public class MultipleChoiceAnswer extends Answer{
         return "evaluatee: " + evaluated_code + ", question: " + question_code
         + ", type: MultipleChoiceAnswer"+
                 ", answer:'" + chosenanswers;
+    }
+
+    public List<String> getChosenAnswers() {
+        return chosenAnswers;
     }
 }

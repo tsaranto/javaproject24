@@ -1,4 +1,5 @@
-
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -32,7 +33,6 @@ public class mainApp {
                     break;
                 case 2:
                     addQuestion(scanner);
-
                     break;
                 case 3:
                     addAnswer(scanner);
@@ -41,10 +41,10 @@ public class mainApp {
                     displayQuestions();
                     break;
                 case 5:
-                    displayEvaluatorAnswers();
+                    displayEvaluatorAnswers(scanner);
                     break;
                 case 6:
-                    //displayCorrectAnswersCount
+                    displayCorrectAnswersCount();
                     break;
                 case 7:
                     //calculateQuestionAccuracy
@@ -94,7 +94,13 @@ public class mainApp {
         System.out.println("Set description:");
         String description = scanner.nextLine();
         switch(choice){
-            //case 1: 
+            case 1:
+                System.out.println("Enter total choices (comma-separated):");
+                List<String> totalChoices = Arrays.asList(scanner.nextLine().split(","));
+                System.out.println("Enter the correct choices (comma-separated):");
+                List<String> correctChoices = Arrays.asList(scanner.nextLine().split(","));
+                questions.add(new MultipleChoiceQuestion(totalChoices, correctChoices, questioncode, description));
+                break; 
             case 2:
                 System.out.println("Enter correct word:");
                 String correctWord = scanner.nextLine();
@@ -126,31 +132,45 @@ public class mainApp {
         System.out.println("Insert question code:");
         int questioncode = scanner.nextInt();
         scanner.nextLine();
-        switch(choice){
-            /*case 1:
-                System.out.println("Insert chosen answers seperated by commas(,):");
-                List<String> chosenanswers = Arrays.asList(scanner.nextLine().split(","));
-                answers.add(new MultipleChoiceAnswer());*/
-            case 1:
-                System.out.println("Insert chosen answers separated by commas(,):");
-                List<String> chosenanswers = Arrays.asList(scanner.nextLine().split(","));
-                answers.add(new MultipleChoiceAnswer(evaluateecode, questioncode, chosenanswers));
-                break;
-            case 2:
-                System.out.println("Insert chosen word:");
-                String word = scanner.nextLine();
-                answers.add(new WordAnswer(evaluateecode, questioncode, word));
-                //brake;
-            case 3:
-                System.out.println("Insert ordered words(comma-separated):");
-                List<String> orderedanswers = Arrays.asList(scanner.nextLine().split(","));
-                answers.add(new SentenceCompletionAnswer(evaluateecode, questioncode, orderedanswers));
-                //brake;
-            default:
-                System.out.println("Invalid choice!");
-                //brake;
 
+        Evaluated evaluatee = null;
+        for (Evaluated e : evaluatedList) {
+            if (e.getCode() == evaluateecode) {
+                evaluatee = e;
+                break;
+            }
         }
+    
+        Question question = null;
+        for (Question q : questions) {
+            if (q.getCode() == questioncode) {
+                question = q;
+                break;
+            }
+        }
+
+        if(evaluatee != null && question != null) {
+            switch(choice){
+                case 1:
+                    System.out.println("Insert chosen answers seperated by commas(,):");
+                    List<String> chosenanswers = Arrays.asList(scanner.nextLine().split(","));
+                    answers.add(new MultipleChoiceAnswer(evaluateecode, questioncode, chosenanswers));
+                    break;
+                case 2:
+                    System.out.println("Insert chosen word:");
+                    String word = scanner.nextLine();
+                    answers.add(new WordAnswer(evaluateecode, questioncode, word));
+                    break;
+                case 3:
+                    System.out.println("Insert ordered words(comma-separated):");
+                    List<String> orderedanswers = Arrays.asList(scanner.nextLine().split(","));
+                    answers.add(new SentenceCompletionAnswer(evaluateecode, questioncode, orderedanswers));
+                    break;
+                default:
+                    System.out.println("Invalid choice!");
+
+            }
+        }    
     }
 
     private static void displayQuestions(){
@@ -159,11 +179,61 @@ public class mainApp {
         }
     }
 
-    private static void displayEvaluatorAnswers(){
-        for (Answer answer: answers){
-            System.out.println(answer);
+    private static void displayEvaluatorAnswers(Scanner scanner){
+        System.out.println("List of evaluatees:");
+        for (Evaluated evaluated : evaluatedList) {
+            System.out.println(evaluated.getCode() + ". " + evaluated.getName() + " " + evaluated.getSurname());
+        }
+        
+        System.out.print("Select an evaluatee: ");
+        int selectedEvaluatedCode = scanner.nextInt();
+        scanner.nextLine(); 
+        
+        Evaluated selectedEvaluated = null;
+        for (Evaluated evaluated : evaluatedList) {
+            if (evaluated.getCode() == selectedEvaluatedCode) {
+                selectedEvaluated = evaluated;
+                break;
+            }
+        }
+        
+        if (selectedEvaluated != null) {
+            System.out.println("Answers of " + selectedEvaluated.getName() + " " + selectedEvaluated.getSurname() + ":");
+            for (Answer answer : answers) {
+                if (answer.getEvaluatedCode() == selectedEvaluatedCode) {
+                    System.out.println(answer);
+                }
+            }
+        } else {
+            System.out.println("Invalid evaluateecode!");
         }
     }
 
+    private static void displayCorrectAnswersCount(){
+        Map<Integer, Integer> correctAnswersCount = new HashMap<>();
+        //ftiaxno map pou apothikeuei os key to evaluated code kai value to plithos soston apantiseon
+        for (Answer answer : answers){
+            Question question = null;
+
+            for (Question q : questions) {
+                if (q.getCode() == answer.getQuestionCode()) {
+                    question = q;
+                    break;
+                }
+            }
+
+            if (question != null && answer.isCorrect(question)) {
+                int evaluatedCode = answer.getEvaluatedCode();
+                correctAnswersCount.put(evaluatedCode, correctAnswersCount.getOrDefault(evaluatedCode, 0) + 1);
+            }
+        }
+
+        for (Evaluated evaluated : evaluatedList) {
+            int correctCount = correctAnswersCount.getOrDefault(evaluated.getCode(), 0);
+            System.out.println("Evaluatee " + evaluated.getName() + " " + evaluated.getSurname() + " has " + correctCount + " correct answers.");
+        }
+
+
+    }
 
 }    
