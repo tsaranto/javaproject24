@@ -8,7 +8,6 @@ public class SentenceCompletionAnswer extends Answer {
         super(evaluated_code,question_code);
         this.wordOrder=wordOrder;
     }
-
     @Override
     public boolean isCorrect(Question question) {
         if (question instanceof SentenceCompletionQuestion) {
@@ -27,6 +26,6 @@ public class SentenceCompletionAnswer extends Answer {
     public String toString() {
         return "evaluatee: " + evaluated_code + ", question: " + question_code
         + ", type: SentenceCompletionQuestion"+
-                ", answer:'" + wordOrder;
+                ", answer:" + wordOrder;
     }
 }

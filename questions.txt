@@ -1,0 +1,72 @@
+QUESTION_LIST
+{
+ QUESTION
+ {
+ CODE 1
+ DESCRIPTION What is the capital of Zimbambwe?
+ TYPE MultipleChoiceQuestion
+ CHOICES Paris,London,Rome,Berlin
+ CORRECT_CHOICES Paris
+ }
+ QUESTION
+ {
+ CODE 2
+ DESCRIPTION Who was the arch nemesis of Jimmy Panousis?
+ TYPE MultipleChoiceQuestion
+ CHOICES Argyros,Kapodistrias,Quentin Tarantino,Ntalaras
+ CORRECT_CHOICES Ntalaras
+ }
+ QUESTION
+ {
+ CODE 3
+ DESCRIPTION Which are beers?
+ TYPE MultipleChoiceQuestion
+ CHOICES Mythos,Stolichnaya,Bergina,Potato
+ CORRECT_CHOICES Mythos,Bergina
+ }
+ QUESTION
+ {
+ CODE 4
+ DESCRIPTION What is the best university in Greece?
+ TYPE WordAnswerQuestion
+ CORRECT_ANSWER Aueb
+ }
+ QUESTION
+ {
+ CODE 5
+ DESCRIPTION Who created comment song 5?
+ TYPE WordAnswerQuestion
+ CORRECT_ANSWER 2j
+ }
+ QUESTION
+ {
+ CODE 6
+ DESCRIPTION What do computer science students drink instead of water?
+ TYPE WordAnswerQuestion
+ CORRECT_ANSWER coffee
+ }
+ QUESTION
+ {
+ CODE 7
+ DESCRIPTION Kathe prama ston ___ tou kai o kolios ton ___.
+ TYPE SentenceCompletionQuestion
+ PROVIDED_WORDS kairo,avgousto
+ CORRECT_ORDER kairo,avgousto
+ }
+ QUESTION
+ {
+ CODE 8
+ DESCRIPTION Ma ego eimai ___, den tha ___
+ TYPE SentenceCompletionQuestion
+ PROVIDED_WORDS ellinas,pethano
+ CORRECT_ORDER ellinas,pethano
+ }
+ QUESTION
+ {
+ CODE 9
+ DESCRIPTION I have a ___, i have an ____, APPLE-PEN!!!
+ TYPE SentenceCompletionQuestion
+ PROVIDED_WORDS pen,apple
+ CORRECT_ORDER pen,apple
+ }
+}

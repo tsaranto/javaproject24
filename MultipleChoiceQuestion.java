@@ -1,5 +1,5 @@
 import java.util.List;
-import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MultipleChoiceQuestion extends Question{
     List<String> answerlist;
@@ -12,28 +12,45 @@ public class MultipleChoiceQuestion extends Question{
         this.correctanswer = correctanswer;
 
     }
-    //APO DO KAI PERA EINAI CHAT TZIPITOULIS, TO GIVENANSERS EINAI THEORITIKA APO TIN KLASI ANSER
     @Override
-    public boolean checkAnswer(List<String> givenAnswers) {
-        // Check if the size of givenAnswers and correctAnswer match
-        if (givenAnswers.size() != correctanswer.size()) {
-            return false;
-        }
+    public boolean checkAnswer(Answer answer) {
 
-        // Check if all given answers are correct
-        for (String answer : givenAnswers) {
-            if (!correctanswer.contains(answer)) {
+        if (answer instanceof MultipleChoiceAnswer) {
+            MultipleChoiceAnswer mcAnswer = (MultipleChoiceAnswer) answer;
+            List<String> givenAnswers = Arrays.asList(mcAnswer.getResponse().split(","));
+        
+
+            if (givenAnswers.size() != correctanswer.size()) {
                 return false;
             }
+
+            for (String givenAnswer : givenAnswers) {
+                if (!correctanswer.contains(givenAnswer)) {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         return true;
+
     }
 
-    public void display() {
-        System.out.println("Question: " + super.description);
-        for (int i = 0; i < answerlist.size(); i++) {
-            System.out.println((i + 1) + ": " + answerlist.get(i));
-        }
+    public List<String> getAnswerlist() {
+        return answerlist;
     }
+
+    public List<String> getCorrectanswer() {
+        return correctanswer;
+    }
+
+    @Override
+    public String toString() {
+        return "(" + code + ") type: MultipleChoiceQuestion" +
+                ", description: '" + description + '\'' +
+                ", choices: " + answerlist +
+                ", correctChoices: " + correctanswer;
+    }
+
 }

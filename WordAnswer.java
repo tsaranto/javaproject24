@@ -27,6 +27,6 @@ public class WordAnswer extends Answer{
     public String toString() {
         return "evaluatee: " + evaluated_code + ", question: " + question_code
         + ", type: WordAnswerQuestion"+
-                ", answer:'" + response;
+                ", answer:" + response;
     }
 }

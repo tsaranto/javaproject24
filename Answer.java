@@ -10,4 +10,14 @@ public abstract class Answer {
 
     public abstract String getResponse();
 
+
+    public int getEvaluatedCode(){
+        return evaluated_code;
+    }
+
+    public int getQuestionCode() {
+        return question_code;
+        
+    }
+
 }
