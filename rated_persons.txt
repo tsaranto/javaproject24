@@ -1,0 +1,27 @@
+RATEDPERSON_LIST
+{
+ RATEDPERSON
+ {
+ CODE 1
+ SURNAME Rouvas
+ FIRSTNAME Sakis
+ }
+ RATEDPERSON
+ {
+ CODE 2
+ SURNAME Kokkonias
+ FIRSTNAME Markellos
+ }
+ RATEDPERSON
+ {
+ CODE 3
+ SURNAME Mic
+ FIRSTNAME Stolen
+ }
+ RATEDPERSON
+ {
+ CODE 4
+ SURNAME Toumpis
+ FIRSTNAME Stavros
+ }
+}

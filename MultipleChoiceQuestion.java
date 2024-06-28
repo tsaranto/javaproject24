@@ -12,10 +12,8 @@ public class MultipleChoiceQuestion extends Question{
         this.correctanswer = correctanswer;
 
     }
-    //APO DO KAI PERA EINAI CHAT TZIPITOULIS, TO GIVENANSERS EINAI THEORITIKA APO TIN KLASI ANSER
     @Override
     public boolean checkAnswer(Answer answer) {
-        // Check if the size of givenAnswers and correctAnswer match
 
         if (answer instanceof MultipleChoiceAnswer) {
             MultipleChoiceAnswer mcAnswer = (MultipleChoiceAnswer) answer;
@@ -26,7 +24,6 @@ public class MultipleChoiceQuestion extends Question{
                 return false;
             }
 
-            // Check if all given answers are correct
             for (String givenAnswer : givenAnswers) {
                 if (!correctanswer.contains(givenAnswer)) {
                     return false;
@@ -38,6 +35,14 @@ public class MultipleChoiceQuestion extends Question{
 
         return true;
 
+    }
+
+    public List<String> getAnswerlist() {
+        return answerlist;
+    }
+
+    public List<String> getCorrectanswer() {
+        return correctanswer;
     }
 
     @Override

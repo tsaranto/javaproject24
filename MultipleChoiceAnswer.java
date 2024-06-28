@@ -26,7 +26,7 @@ public class MultipleChoiceAnswer extends Answer{
     public String toString() {
         return "evaluatee: " + evaluated_code + ", question: " + question_code
         + ", type: MultipleChoiceAnswer"+
-                ", answer:'" + chosenanswers;
+                ", answer:" + chosenanswers;
     }
 }
 

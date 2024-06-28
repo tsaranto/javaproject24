@@ -12,6 +12,10 @@ public class WordAnswerQuestion extends Question{
         return correctanswer.equalsIgnoreCase(answer1.trim());
     }
 
+    public String getCorrectAnswer(){
+        return correctanswer;
+    }
+
     @Override
     public String toString() {
         return "(" + code + ") type: WordAnswerQuestion"+

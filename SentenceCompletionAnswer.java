@@ -26,6 +26,6 @@ public class SentenceCompletionAnswer extends Answer {
     public String toString() {
         return "evaluatee: " + evaluated_code + ", question: " + question_code
         + ", type: SentenceCompletionQuestion"+
-                ", answer:'" + wordOrder;
+                ", answer:" + wordOrder;
     }
 }
